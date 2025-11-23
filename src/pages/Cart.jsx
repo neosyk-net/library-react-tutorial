@@ -1,13 +1,13 @@
 import React from "react";
 
 const Cart = ({ cart, changeQuantity }) => {
-    const total = () => {
-        let counter = 0;
-        cart.forEach(item => {
-            counter += +(item.salePrice || book.originalPrice).toFixed(2)
-        });
-        return price
-    }
+  const total = () => {
+    let counter = 0;
+    cart.forEach((item) => {
+      counter += +(item.salePrice || item.originalPrice).toFixed(2);
+    });
+    return price;
+  };
 
   return (
     <div className="books__body">
