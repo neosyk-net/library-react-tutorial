@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import Landing from "./components/Landing.jsx";
 import Nav from "./components/nav.jsx";
 import Highlights from "./components/Highlights.jsx";
@@ -10,16 +11,47 @@ import Home from "./pages/Home.jsx";
 import Books from "./pages/Books.jsx";
 import { books } from "./data";
 import BookInfo from "./pages/BookInfo.jsx";
+import Cart from "./pages/Cart.jsx";
 
 
 function App() {
+  const [cart, setCart] = useState([]);
+
+  function addToCart(book) {
+    setCart([...cart, book])
+  }
+
+  useEffect(() => {
+    console.log(cart)
+  }, [cart])
+  
+  // function addToCart(book) {
+  //   const dupeItem = cart.find((item) => +item.id === +book.id);
+  //   if (dupeItem) {
+  //     setCart(
+  //       cart.map((item) => {
+  //       if (item.id === dupeItem.id) {
+  //         return {
+  //           ...item, 
+  //           quantity: item.quantity + 1,
+  //         }
+  //       } else {
+  //         return item
+  //       }
+  //     }))
+  //   } else {
+  //     setCart([...cart, {...book, quantity: 1}])
+  //   }
+  // }
+
   return (
     <Router>
       <div className="App">
         <Nav />
         <Route path="/" exact component={Home} />
         <Route path="/books" exact render={() => <Books books={books} />} />
-        <Route path="/books/:id" render={() => <BookInfo books={books} />} />
+        <Route path="/books/:id" render={() => <BookInfo books={books} addToCart={addToCart} />} />
+        <Route path="/cart" render={() => <Cart books={books} />} />
 
         <Footer />
       </div>
