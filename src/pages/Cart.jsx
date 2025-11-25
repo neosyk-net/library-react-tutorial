@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Cart = ({ cart, changeQuantity }) => {
+    useEffect(() => {
+        
+    }, [])
   const total = () => {
-    let counter = 0;
+    let price = 0;
     cart.forEach((item) => {
-      counter += +(item.salePrice || item.originalPrice).toFixed(2);
+      price += +(item.salePrice || item.originalPrice).toFixed(2);
     });
     return price;
   };
